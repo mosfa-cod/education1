@@ -1083,7 +1083,8 @@
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+     const response = await fetch(' https://eduvibe-backend.vercel.app/api/auth/register', {
+
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ fullName, email, password })
@@ -1215,33 +1216,34 @@ tById('logoutBtn')?.addEventListener('click', () => {
 </section>
 
 <script>
-  // كود إرسال الكورس الجديد وحفظه في الموديل السحابي بـ MongoDB
-  document.getElementById('addCourseForm')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const title = document.getElementById('courseTitle').value;
-    const description = document.getElementById('courseDesc').value;
-    const videoUrl = document.getElementById('courseVideo').value;
+    // كود إرسال الكورس الجديد وحفظه في الموديل السحابي بـ MongoDB
+    const addCourseForm = document.getElementById('addCourseForm');
+    addCourseForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    try {
-      const response = await fetch('http://localhost:5000/api/courses', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, description, videoUrl })
-      });
+        const title = document.getElementById('courseTitle').value;
+        const description = document.getElementById('courseDesc').value;
+        const videoUrl = document.getElementById('courseVideo').value;
 
-      const data = await response.json();
+        try {
+            const response = await fetch('https://vercel.app', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ title, description, videoUrl })
+            });
 
-      if (response.ok) {
-        alert('🎉 مبروك يا فنان! ' + data.msg);
-        document.getElementById('addCourseForm').reset(); // تفريغ الحقول بعد النجاح
-      } else {
-        alert('❌ فشل نشر الكورس: خطأ في البيانات المرسلة');
-      }
-    } catch (error) {
-      alert('❌ خطأ: تأكد من أن سيرفر الباك آند يعمل على منفذ 5000!');
-    }
-  });
+            const data = await response.json();
+
+            if (response.ok) {
+                alert('🎉 مبروك يا فنان! ' + (data.msg || 'تم النشر بنجاح'));
+                addCourseForm.reset(); // تفريغ الحقول بعد النجاح
+            } else {
+                alert('❌ فشل نشر الكورس: خطأ في البيانات المرسلة');
+            }
+        } catch (error) {
+            alert('❌ خطأ: تأكد من أن سيرفر الباك آند يعمل أو أن الرابط صحيح!');
+        }
+    });
 </script>
       
         <div class="why-section">
@@ -1460,7 +1462,7 @@ tById('logoutBtn')?.addEventListener('click', () => {
             });
         });
 
-        // Pause on hover
+       ئ // Pause on hover
         const sliderWrapper = document.getElementById('testimonialSlider');
         sliderWrapper.addEventListener('mouseenter', stopAutoPlay);
         sliderWrapper.addEventListener('mouseleave', startAutoPlay);
