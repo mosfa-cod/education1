@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- تحميل إعدادات Firebase قبل أي سكريبت آخر -->
+    <script type="module" src="firebase-config.js"></script>
     <style>
         :root {
             --bg-primary: #0a0a0f;
@@ -1026,46 +1028,48 @@
                 </div>
             </div>
         </div>
-    </section> <!-- قسم الحسابات ولوحة التحكم بتنسيق مصلح وجميل -->
-<section class="section" id="academy-auth-section" style="padding: 60px 20px; background: #0b0f19; text-align: center; display: flex; flex-direction: column; gap: 40px; align-items: center; direction: rtl;">
+    </section>
 
-  <!-- 1. استمارة إنشاء حساب طالب جديد -->
-  <div id="registerBox" style="width: 100%; max-width: 480px; background: #111827; padding: 40px; border-radius: 12px; border: 1px solid #1f2937; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);">
-    <h2 style="color: #00bcd4; margin-bottom: 10px; font-size: 28px; font-family: sans-serif;">إنشاء حساب طالب جديد</h2>
-    <p style="color: #9ca3af; margin-bottom: 25px;">انضم إلينا اليوم وابدأ رحلتك التعليمية</p>
-    <form id="studentRegisterForm" style="display: flex; flex-direction: column; gap: 20px;">
-      <input type="text" id="fullName" placeholder="الاسم الكامل" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #374151; background: #1f2937; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box;">
-      <input type="email" id="email" placeholder="البريد الإلكتروني" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #374151; background: #1f2937; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box;">
-      <input type="password" id="password" placeholder="كلمة المرور" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #374151; background: #1f2937; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box;">
-      <button type="submit" style="width: 100%; padding: 14px; border-radius: 8px; border: none; background: #00bcd4; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-sizing: border-box;">تسجيل الحساب</button>
-    </form>
-  </div>
+    <!-- ==================== قسم الحسابات ولوحة التحكم ==================== -->
+    <section class="section" id="academy-auth-section" style="padding: 60px 20px; background: #0b0f19; text-align: center; display: flex; flex-direction: column; gap: 40px; align-items: center; direction: rtl;">
 
-  <!-- 2. استمارة تسجيل الدخول -->
-  <div id="loginBox" style="width: 100%; max-width: 480px; background: #111827; padding: 40px; border-radius: 12px; border: 1px solid #1f2937; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);">
-    <h2 style="color: #a855f7; margin-bottom: 10px; font-size: 28px; font-family: sans-serif;">تسجيل الدخول للمنصة</h2>
-    <p style="color: #9ca3af; margin-bottom: 25px;">أدخل بياناتك للوصول إلى كورساتك</p>
-    <form id="studentLoginForm" style="display: flex; flex-direction: column; gap: 20px;">
-      <input type="email" id="loginEmail" placeholder="البريد الإلكتروني" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #374151; background: #1f2937; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box;">
-      <input type="password" id="loginPassword" placeholder="كلمة المرور" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #374151; background: #1f2937; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box;">
-      <button type="submit" style="width: 100%; padding: 14px; border-radius: 8px; border: none; background: #a855f7; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-sizing: border-box;">دخول الطالب</button>
-    </form>
-  </div>
+      <!-- 1. استمارة إنشاء حساب طالب جديد -->
+      <div id="registerBox" style="width: 100%; max-width: 480px; background: #111827; padding: 40px; border-radius: 12px; border: 1px solid #1f2937; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);">
+        <h2 style="color: #00bcd4; margin-bottom: 10px; font-size: 28px; font-family: sans-serif;">إنشاء حساب طالب جديد</h2>
+        <p style="color: #9ca3af; margin-bottom: 25px;">انضم إلينا اليوم وابدأ رحلتك التعليمية</p>
+        <form id="studentRegisterForm" style="display: flex; flex-direction: column; gap: 20px;">
+          <input type="text" id="fullName" placeholder="الاسم الكامل" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #374151; background: #1f2937; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box;">
+          <input type="email" id="email" placeholder="البريد الإلكتروني" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #374151; background: #1f2937; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box;">
+          <input type="password" id="password" placeholder="كلمة المرور" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #374151; background: #1f2937; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box;">
+          <button type="submit" style="width: 100%; padding: 14px; border-radius: 8px; border: none; background: #00bcd4; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-sizing: border-box;">تسجيل الحساب</button>
+        </form>
+      </div>
 
-  <!-- 3. لوحة تحكم الطالب -->
-  <div id="dashboardBox" style="display: none; width: 100%; max-width: 600px; background: #1f2937; padding: 40px; border-radius: 12px; border: 2px solid #00bcd4; text-align: right; box-sizing: border-box;">
-    <h2 style="color: #00bcd4; margin-bottom: 10px; font-size: 26px; border-bottom: 1px solid #374151; padding-bottom: 10px;">👋 مرحباً بك في لوحة تحكم الطالب</h2>
-    <p style="color: #fff; font-size: 18px; margin: 15px 0;">اسم الطالب: <span id="dashStudentName" style="color: #a855f7; font-weight: bold;">-</span></p>
-    <p style="color: #fff; font-size: 18px; margin: 15px 0;">البريد الإلكتروني: <span id="dashStudentEmail" style="color: #9ca3af;">-</span></p>
-    <div style="background: #111827; padding: 20px; border-radius: 8px; margin-top: 20px; border-right: 4px solid #00bcd4;">
-      <h3 style="color: #fff; margin-top: 0;">📚 كورساتك النشطة الحالية:</h3>
-      <ul style="color: #9ca3af; padding-right: 20px; line-height: 1.8;">
-        <li>كورس أساسيات الذكاء الاصطناعي الشامل (نسبة الإنجاز: 0%)</li>
-        <li>كورس تطوير واجهات الويب الكاملة (نسبة الإنجاز: 10%)</li>
-      </ul>
-    </div>
-    <button id="logoutBtn" style="padding: 10px 20px; border-radius: 6px; border: none; background: #ef4444; color: #fff; font-size: 14px; font-weight: bold; cursor: pointer; margin-top: 25px;">تسجيل الخروج</button>
-  </div>
+      <!-- 2. استمارة تسجيل الدخول -->
+      <div id="loginBox" style="width: 100%; max-width: 480px; background: #111827; padding: 40px; border-radius: 12px; border: 1px solid #1f2937; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);">
+        <h2 style="color: #a855f7; margin-bottom: 10px; font-size: 28px; font-family: sans-serif;">تسجيل الدخول للمنصة</h2>
+        <p style="color: #9ca3af; margin-bottom: 25px;">أدخل بياناتك للوصول إلى كورساتك</p>
+        <form id="studentLoginForm" style="display: flex; flex-direction: column; gap: 20px;">
+          <input type="email" id="loginEmail" placeholder="البريد الإلكتروني" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #374151; background: #1f2937; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box;">
+          <input type="password" id="loginPassword" placeholder="كلمة المرور" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #374151; background: #1f2937; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box;">
+          <button type="submit" style="width: 100%; padding: 14px; border-radius: 8px; border: none; background: #a855f7; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-sizing: border-box;">دخول الطالب</button>
+        </form>
+      </div>
+
+      <!-- 3. لوحة تحكم الطالب -->
+      <div id="dashboardBox" style="display: none; width: 100%; max-width: 600px; background: #1f2937; padding: 40px; border-radius: 12px; border: 2px solid #00bcd4; text-align: right; box-sizing: border-box;">
+        <h2 style="color: #00bcd4; margin-bottom: 10px; font-size: 26px; border-bottom: 1px solid #374151; padding-bottom: 10px;">👋 مرحباً بك في لوحة تحكم الطالب</h2>
+        <p style="color: #fff; font-size: 18px; margin: 15px 0;">اسم الطالب: <span id="dashStudentName" style="color: #a855f7; font-weight: bold;">-</span></p>
+        <p style="color: #fff; font-size: 18px; margin: 15px 0;">البريد الإلكتروني: <span id="dashStudentEmail" style="color: #9ca3af;">-</span></p>
+        <div style="background: #111827; padding: 20px; border-radius: 8px; margin-top: 20px; border-right: 4px solid #00bcd4;">
+          <h3 style="color: #fff; margin-top: 0;">📚 كورساتك النشطة الحالية:</h3>
+          <ul style="color: #9ca3af; padding-right: 20px; line-height: 1.8;">
+            <li>كورس أساسيات الذكاء الاصطناعي الشامل (نسبة الإنجاز: 0%)</li>
+            <li>كورس تطوير واجهات الويب الكاملة (نسبة الإنجاز: 10%)</li>
+          </ul>
+        </div>
+        <button id="logoutBtn" style="padding: 10px 20px; border-radius: 6px; border: none; background: #ef4444; color: #fff; font-size: 14px; font-weight: bold; cursor: pointer; margin-top: 25px;">تسجيل الخروج</button>
+      </div>
       <!-- صندوق مشغل الفيديو السينمائي الداخلي (مخفي ويظهر عند الضغط على الدرس) -->
       <div id="videoPlayerBox" style="display: none; margin-top: 25px; background: #111827; padding: 15px; border-radius: 8px; border: 1px solid #374151;">
         <h4 id="playingVideoTitle" style="color: #00bcd4; margin-top: 0; margin-bottom: 12px; font-size: 16px; font-family: sans-serif;">📺 جاري تشغيل المحاضرة الحالية</h4>
@@ -1074,178 +1078,216 @@
         </div>
       </div>
 
-</section>
+    </section>
 
-<script>
-  document.getElementById('studentRegisterForm')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const fullName = document.getElementById('fullName').value;
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    try {
-     const response = await fetch(' https://eduvibe-backend.vercel.app/api/auth/register', {
+    <!-- ============ سكريبت التسجيل / الدخول / الخروج (Firebase Auth + Firestore) ============ -->
+    <script type="module">
+      import { auth, db } from "./firebase-config.js";
+      import {
+        createUserWithEmailAndPassword,
+        signInWithEmailAndPassword,
+        signOut,
+        updateProfile
+      } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+      import {
+        doc,
+        setDoc,
+        getDoc,
+        collection,
+        getDocs
+      } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ fullName, email, password })
-      });
-      const data = await response.json();
-      if (response.ok) {
-        alert('🎉 مبروك! تم إنشاء حساب الطالب بنجاح وحفظه سحابياً!');
-        document.getElementById('studentRegisterForm').reset();
-      } else {
-        alert('❌ فشل التسجيل: ' + (data.msg || 'بيانات غير صالحة'));
-      }
-    } catch (error) {
-      alert('❌ خطأ: تأكد من تشغيل سيرفر الباك آند!');
-    }
-  });
- 
-document.getElementById('studentLoginForm')?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
+      // ============ تسجيل حساب جديد ============
+      document.getElementById('studentRegisterForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const fullName = document.getElementById('fullName').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
 
-    try {
-        const response = await fetch('https://vercel.app', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email, password })
-        });
+        try {
+          const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+          const user = userCredential.user;
 
-        const data = await response.json();
+          // تحديث اسم المستخدم في حساب Firebase Auth
+          await updateProfile(user, { displayName: fullName });
 
-        if (response.ok) {
-            alert('تم تسجيل الدخول بنجاح 🎉');
-            document.getElementById('registerBox').style.display = 'none';
-            document.getElementById('loginBox').style.display = 'none';
-            document.getElementById('dashboardBox').style.display = 'block';
-            document.getElementById('dashStudentName').innerText = data.user.fullName;
-            document.getElementById('dashStudentEmail').innerText = data.user.email;
+          // حفظ بيانات إضافية في Firestore
+          await setDoc(doc(db, "students", user.uid), {
+            fullName: fullName,
+            email: email,
+            createdAt: new Date().toISOString()
+          });
 
-            const coursesResponse = await fetch('https://vercel.app/api/courses');
-            const coursesData = await coursesResponse.json();
-
-            const coursesList = document.querySelector('#dashboardBox ul');
-            if (coursesList && coursesData.length > 0) {
-                coursesList.innerHTML = '';
-                coursesData.forEach(course => {
-                    const li = document.createElement('li');
-                    li.style.marginBottom = '15px';
-                    li.innerHTML = `
-                        <strong style="color: #00bcd4; font-size: 16px;">${course.title}</strong>
-                        <p style="color: #94a3b8; margin: 5px 0 0 0; font-size: 14px;">${course.description}</p>
-                        <a href="#" class="play-video-link" data-url="${course.videoUrl}" data-title="${course.title}" style="color: #a855f7; font-size: 13px; text-decoration: none; display: inline-block; margin-top: 5px; cursor: pointer;">📺 اضغط هنا لتشغيل الدرس داخل المنصة</a>
-                    `;
-                    coursesList.appendChild(li);
-                });
-
-                document.querySelectorAll('.play-video-link').forEach(link => {
-                    link.addEventListener('click', (event) => {
-                        event.preventDefault();
-                        let origUrl = link.getAttribute('data-url');
-                        const videoTitle = link.getAttribute('data-title');
-
-                        if (origUrl.includes('watch?v=')) {
-                          origUrl = origUrl.replace('watch?v=', 'embed/');
-                        } else if (origUrl.includes('youtu.be/')) {
-                          origUrl = origUrl.replace('youtu.be/', '://youtube.com');
-                        }
-
-                        const playerBox = document.getElementById('videoPlayerBox');
-                        const iframe = document.getElementById('videoIframe');
-                        const titleText = document.getElementById('playingVideoTitle');
-
-                        if (playerBox && iframe && titleText) {
-                          iframe.src = origUrl;
-                          titleText.innerText = '📺 جاري تشغيل: ' + videoTitle;
-                          playerBox.style.display = 'block';
-                          playerBox.scrollIntoView({ behavior: 'smooth' });
-                        }
-                    });
-                });
-            }
-        } else {
-            alert(data.message || 'خطأ في البريد الإلكتروني أو كلمة المرور');
+          alert('🎉 مبروك! تم إنشاء حساب الطالب بنجاح وحفظه سحابياً!');
+          document.getElementById('studentRegisterForm').reset();
+        } catch (error) {
+          console.error(error);
+          let message = 'حدث خطأ أثناء التسجيل';
+          if (error.code === 'auth/email-already-in-use') {
+            message = 'البريد الإلكتروني مستخدم بالفعل';
+          } else if (error.code === 'auth/weak-password') {
+            message = 'كلمة المرور ضعيفة، يجب أن تكون 6 أحرف على الأقل';
+          } else if (error.code === 'auth/invalid-email') {
+            message = 'صيغة البريد الإلكتروني غير صحيحة';
+          }
+          alert('❌ فشل التسجيل: ' + message);
         }
-    } catch (error) {
-        console.error('حدث خطأ أثناء الاتصال بالخادم:', error);
-        alert('❌ خطأ: تأكد من تشغيل سيرفر الباك آند!');
-    }
-});
+      });
 
-tById('logoutBtn')?.addEventListener('click', () => {
-    document.getElementById('dashboardBox').style.display = 'none';
-    document.getElementById('registerBox').style.display = 'block';
-    document.getElementById('loginBox').style.display = 'block';
-    document.getElementById('studentLoginForm').reset();
-  });
-</script>
-====== WHY CHOOSE US ==================== -->
+      // ============ تسجيل الدخول ============
+      document.getElementById('studentLoginForm')?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        try {
+          const userCredential = await signInWithEmailAndPassword(auth, email, password);
+          const user = userCredential.user;
+
+          // جلب بيانات الطالب الإضافية من Firestore
+          const studentDoc = await getDoc(doc(db, "students", user.uid));
+          const studentData = studentDoc.exists() ? studentDoc.data() : {};
+
+          alert('تم تسجيل الدخول بنجاح 🎉');
+          document.getElementById('registerBox').style.display = 'none';
+          document.getElementById('loginBox').style.display = 'none';
+          document.getElementById('dashboardBox').style.display = 'block';
+          document.getElementById('dashStudentName').innerText = studentData.fullName || user.displayName || '-';
+          document.getElementById('dashStudentEmail').innerText = user.email;
+
+          // جلب الكورسات من Firestore
+          const coursesSnapshot = await getDocs(collection(db, "courses"));
+          const coursesList = document.querySelector('#dashboardBox ul');
+
+          if (coursesList && !coursesSnapshot.empty) {
+            coursesList.innerHTML = '';
+            coursesSnapshot.forEach((docSnap) => {
+              const course = docSnap.data();
+              const li = document.createElement('li');
+              li.style.marginBottom = '15px';
+              li.innerHTML = `
+                <strong style="color: #00bcd4; font-size: 16px;">${course.title}</strong>
+                <p style="color: #94a3b8; margin: 5px 0 0 0; font-size: 14px;">${course.description}</p>
+                <a href="#" class="play-video-link" data-url="${course.videoUrl}" data-title="${course.title}" style="color: #a855f7; font-size: 13px; text-decoration: none; display: inline-block; margin-top: 5px; cursor: pointer;">📺 اضغط هنا لتشغيل الدرس داخل المنصة</a>
+              `;
+              coursesList.appendChild(li);
+            });
+
+            document.querySelectorAll('.play-video-link').forEach(link => {
+              link.addEventListener('click', (event) => {
+                event.preventDefault();
+                let origUrl = link.getAttribute('data-url');
+                const videoTitle = link.getAttribute('data-title');
+
+                if (origUrl.includes('watch?v=')) {
+                  origUrl = origUrl.replace('watch?v=', 'embed/');
+                } else if (origUrl.includes('youtu.be/')) {
+                  origUrl = origUrl.replace('youtu.be/', 'youtube.com/embed/');
+                }
+
+                const playerBox = document.getElementById('videoPlayerBox');
+                const iframe = document.getElementById('videoIframe');
+                const titleText = document.getElementById('playingVideoTitle');
+
+                if (playerBox && iframe && titleText) {
+                  iframe.src = origUrl;
+                  titleText.innerText = '📺 جاري تشغيل: ' + videoTitle;
+                  playerBox.style.display = 'block';
+                  playerBox.scrollIntoView({ behavior: 'smooth' });
+                }
+              });
+            });
+          }
+        } catch (error) {
+          console.error(error);
+          let message = 'خطأ في البريد الإلكتروني أو كلمة المرور';
+          if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password') {
+            message = 'البريد الإلكتروني أو كلمة المرور غير صحيحة';
+          } else if (error.code === 'auth/user-not-found') {
+            message = 'لا يوجد حساب بهذا البريد الإلكتروني';
+          }
+          alert('❌ ' + message);
+        }
+      });
+
+      // ============ تسجيل الخروج ============
+      document.getElementById('logoutBtn')?.addEventListener('click', async () => {
+        await signOut(auth);
+        document.getElementById('dashboardBox').style.display = 'none';
+        document.getElementById('registerBox').style.display = 'block';
+        document.getElementById('loginBox').style.display = 'block';
+        document.getElementById('studentLoginForm').reset();
+      });
+    </script>
+
+    <!-- ==================== WHY CHOOSE US ==================== -->
     <section class="section" id="why-us">
         <div class="section-header">
             <div class="section-tag">✨ لماذا EduVibe؟</div>
             <h2>ما يميزنا عن غيرنا</h2>
             <p>نقدم تجربة تعليمية فريدة تجمع بين الجودة والمرونة والدعم المستمر</p>
         </div>
-  <!-- ================= TEACHER DASHBOARD SECTION ================= -->
-<section class="section" id="teacher-dashboard-section" style="padding: 60px 20px; background: #0f172a; text-align: center; border-top: 2px dashed #a855f7; direction: rtl;">
-  <div style="width: 100%; max-width: 600px; margin: 0 auto; background: #1e293b; padding: 40px; border-radius: 12px; border: 1px solid #334155; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); text-align: right;">
-    <h2 style="color: #a855f7; margin-bottom: 5px; font-size: 28px; font-family: sans-serif;">💼 لوحة تحكم المعلم (إدارة المحتوى)</h2>
-    <p style="color: #94a3b8; margin-bottom: 25px; font-size: 15px;">قم بإضافة كورسات ومحاضرات جديدة للمنصة السحابية</p>
-    
-    <form id="addCourseForm" style="display: flex; flex-direction: column; gap: 20px;">
-      <div>
-        <label style="color: #cbd5e1; display: block; margin-bottom: 8px; font-size: 14px;">عنوان الكورس أو المحاضرة:</label>
-        <input type="text" id="courseTitle" placeholder="مثال: كورس البرمجة المتقدم بلغة جافا سكريبت" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box;">
-      </div>
-      
-      <div>
-        <label style="color: #cbd5e1; display: block; margin-bottom: 8px; font-size: 14px;">وصف وتفاصيل المحتوى الدراسي:</label>
-        <textarea id="courseDesc" placeholder="اكتب هنا محاور الدرس والأهداف التعليمية..." required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box; min-height: 100px; font-family: sans-serif; resize: vertical;"></textarea>
-      </div>
-      
-      <div>
-        <label style="color: #cbd5e1; display: block; margin-bottom: 8px; font-size: 14px;">رابط فيديو الدرس (يوتيوب أو سحابي):</label>
-        <input type="url" id="courseVideo" placeholder="https://youtube.com..." required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #fff; font-size: 16px; text-align: left; box-sizing: border-box; direction: ltr;">
-      </div>
-      
-      <button type="submit" style="width: 100%; padding: 14px; border-radius: 8px; border: none; background: #a855f7; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-sizing: border-box; margin-top: 10px;">🚀 نشر الكورس في المنصة فوراً</button>
-    </form>
-  </div>
-</section>
 
-<script>
-    // كود إرسال الكورس الجديد وحفظه في الموديل السحابي بـ MongoDB
-    const addCourseForm = document.getElementById('addCourseForm');
-    addCourseForm?.addEventListener('submit', async (e) => {
-        e.preventDefault();
+      <!-- ================= TEACHER DASHBOARD SECTION ================= -->
+      <section class="section" id="teacher-dashboard-section" style="padding: 60px 20px; background: #0f172a; text-align: center; border-top: 2px dashed #a855f7; direction: rtl;">
+        <div style="width: 100%; max-width: 600px; margin: 0 auto; background: #1e293b; padding: 40px; border-radius: 12px; border: 1px solid #334155; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3); text-align: right;">
+          <h2 style="color: #a855f7; margin-bottom: 5px; font-size: 28px; font-family: sans-serif;">💼 لوحة تحكم المعلم (إدارة المحتوى)</h2>
+          <p style="color: #94a3b8; margin-bottom: 25px; font-size: 15px;">قم بإضافة كورسات ومحاضرات جديدة للمنصة السحابية</p>
 
-        const title = document.getElementById('courseTitle').value;
-        const description = document.getElementById('courseDesc').value;
-        const videoUrl = document.getElementById('courseVideo').value;
+          <form id="addCourseForm" style="display: flex; flex-direction: column; gap: 20px;">
+            <div>
+              <label style="color: #cbd5e1; display: block; margin-bottom: 8px; font-size: 14px;">عنوان الكورس أو المحاضرة:</label>
+              <input type="text" id="courseTitle" placeholder="مثال: كورس البرمجة المتقدم بلغة جافا سكريبت" required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box;">
+            </div>
 
-        try {
-            const response = await fetch('https://vercel.app', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title, description, videoUrl })
+            <div>
+              <label style="color: #cbd5e1; display: block; margin-bottom: 8px; font-size: 14px;">وصف وتفاصيل المحتوى الدراسي:</label>
+              <textarea id="courseDesc" placeholder="اكتب هنا محاور الدرس والأهداف التعليمية..." required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #fff; font-size: 16px; text-align: right; box-sizing: border-box; min-height: 100px; font-family: sans-serif; resize: vertical;"></textarea>
+            </div>
+
+            <div>
+              <label style="color: #cbd5e1; display: block; margin-bottom: 8px; font-size: 14px;">رابط فيديو الدرس (يوتيوب أو سحابي):</label>
+              <input type="url" id="courseVideo" placeholder="https://youtube.com..." required style="width: 100%; padding: 14px; border-radius: 8px; border: 1px solid #475569; background: #0f172a; color: #fff; font-size: 16px; text-align: left; box-sizing: border-box; direction: ltr;">
+            </div>
+
+            <button type="submit" style="width: 100%; padding: 14px; border-radius: 8px; border: none; background: #a855f7; color: #fff; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; box-sizing: border-box; margin-top: 10px;">🚀 نشر الكورس في المنصة فوراً</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ============ سكريبت إضافة كورس جديد (Firestore) ============ -->
+      <script type="module">
+        import { db } from "./firebase-config.js";
+        import {
+          collection,
+          addDoc
+        } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+        const addCourseForm = document.getElementById('addCourseForm');
+        addCourseForm?.addEventListener('submit', async (e) => {
+          e.preventDefault();
+
+          const title = document.getElementById('courseTitle').value;
+          const description = document.getElementById('courseDesc').value;
+          const videoUrl = document.getElementById('courseVideo').value;
+
+          try {
+            await addDoc(collection(db, "courses"), {
+              title: title,
+              description: description,
+              videoUrl: videoUrl,
+              createdAt: new Date().toISOString()
             });
 
-            const data = await response.json();
+            alert('🎉 مبروك يا فنان! تم النشر بنجاح');
+            addCourseForm.reset();
+          } catch (error) {
+            console.error(error);
+            alert('❌ فشل نشر الكورس: ' + error.message);
+          }
+        });
+      </script>
 
-            if (response.ok) {
-                alert('🎉 مبروك يا فنان! ' + (data.msg || 'تم النشر بنجاح'));
-                addCourseForm.reset(); // تفريغ الحقول بعد النجاح
-            } else {
-                alert('❌ فشل نشر الكورس: خطأ في البيانات المرسلة');
-            }
-        } catch (error) {
-            alert('❌ خطأ: تأكد من أن سيرفر الباك آند يعمل أو أن الرابط صحيح!');
-        }
-    });
-</script>
-      
         <div class="why-section">
             <div class="features-grid">
                 <div class="feature-card">
@@ -1462,7 +1504,7 @@ tById('logoutBtn')?.addEventListener('click', () => {
             });
         });
 
-       ئ // Pause on hover
+        // Pause on hover
         const sliderWrapper = document.getElementById('testimonialSlider');
         sliderWrapper.addEventListener('mouseenter', stopAutoPlay);
         sliderWrapper.addEventListener('mouseleave', startAutoPlay);
@@ -1504,4 +1546,5 @@ tById('logoutBtn')?.addEventListener('click', () => {
             });
         });
     </script>
+</body>
 </html>
